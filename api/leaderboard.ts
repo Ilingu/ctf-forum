@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { db } from "./db";
-import { users, submissions } from "./db/schema";
+import { db } from "./db/index.js";
+import { users, submissions } from "./db/schema.js";
 
 export default async function handler(
   _req: VercelRequest,
