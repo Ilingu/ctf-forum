@@ -5,6 +5,7 @@ export default function Onboarding() {
   const [name, setName] = useState("");
   const [typedText, setTypedText] = useState("");
   const [showInput, setShowInput] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const fullText =
     "$ Bienvenue au CTF Métier Info\n$ Prêt·e à relever le défi ?";
@@ -29,7 +30,8 @@ export default function Onboarding() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!name.trim()) return;
+    if (!name.trim() || submitting) return;
+    setSubmitting(true);
 
     try {
       const user = await api.registerUser(name.trim());
@@ -37,6 +39,7 @@ export default function Onboarding() {
       localStorage.setItem("my_username", user.username);
       // Force reload or redirect to load ProtectedRoute
       window.location.href = "/challenges";
+      setSubmitting(false);
     } catch (e) {}
   };
 
@@ -83,7 +86,7 @@ export default function Onboarding() {
 
             <button
               type="submit"
-              disabled={!name.trim()}
+              disabled={!name.trim() || submitting}
               className="mt-4 w-full py-3 bg-terminal/10 hover:bg-terminal/20 text-terminal border border-terminal/50 rounded transition-all font-bold tracking-wider disabled:opacity-50 disabled:cursor-not-allowed uppercase shadow-[0_0_10px_rgba(0,255,65,0.1)] hover:shadow-[0_0_15px_rgba(0,255,65,0.3)]"
             >
               [ COMMENCER ]
