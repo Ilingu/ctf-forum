@@ -35,10 +35,9 @@ export default function Onboarding() {
       const user = await api.registerUser(name.trim());
       localStorage.setItem("my_user_id", user.id);
       localStorage.setItem("my_username", user.username);
+      // Force reload or redirect to load ProtectedRoute
+      window.location.href = "/challenges";
     } catch (e) {}
-
-    // Force reload or redirect to load ProtectedRoute
-    window.location.href = "/challenges";
   };
 
   return (

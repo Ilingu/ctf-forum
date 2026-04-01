@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { and, eq } from "drizzle-orm";
-import { db } from "./db/db";
+import { db } from "./db";
 import { users, submissions } from "./db/schema";
 import { CHALLENGES } from "../src/lib/challenges";
 
