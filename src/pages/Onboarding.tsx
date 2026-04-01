@@ -39,7 +39,6 @@ export default function Onboarding() {
       localStorage.setItem("my_username", user.username);
       // Force reload or redirect to load ProtectedRoute
       window.location.href = "/challenges";
-      setSubmitting(false);
     } catch (e) {}
   };
 
